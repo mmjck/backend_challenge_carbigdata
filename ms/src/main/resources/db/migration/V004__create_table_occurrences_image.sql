@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS  tb_occurrences_images (
+    id SERIAL PRIMARY KEY,       
+    hash VARCHAR NOT NULL,  
+    path VARCHAR NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
