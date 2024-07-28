@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.carbigdata.ms.repositories.occurrences.jpa.model.OccurencesJpaModel;
+import com.carbigdata.ms.repositories.occurrences.jpa.model.OccurrencesJpaModel;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -48,7 +48,7 @@ public class OccurrencesImageJpaModel {
 
     @ManyToOne
     @JoinColumn(name = "occurence_id", insertable = false, updatable = false)
-    private OccurencesJpaModel occurrence;
+    private OccurrencesJpaModel occurrence;
 
 
     public OccurrencesImageJpaModel(int id, int occurenceId, String hash, String path, LocalDateTime createdAt) {

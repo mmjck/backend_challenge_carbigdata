@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.carbigdata.ms.repositories.occurrences.jpa.model.OccurencesJpaModel;
+import com.carbigdata.ms.repositories.occurrences.jpa.model.OccurrencesJpaModel;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -62,7 +62,7 @@ public class ClientJpaModel {
 
 
     @OneToMany(mappedBy = "id", cascade = CascadeType.REMOVE)
-    private List<OccurencesJpaModel> occurrences;
+    private List<OccurrencesJpaModel> occurrences;
 
 
 
