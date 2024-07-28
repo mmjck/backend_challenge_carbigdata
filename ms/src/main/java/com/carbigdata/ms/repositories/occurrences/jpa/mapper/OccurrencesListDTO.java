@@ -27,17 +27,20 @@ public record OccurrencesListDTO(
 
     public OccurrencesListDTO(
             String id,
-            String state,
-            String createdAt,
             String status,
-            String cpf,
-            String district,
+            String createdAt,
+            String json, // raw json of images
+            String state,
             String city,
-            String fullName,
             String zipCode,
-            Integer clientId,
-            String json) {
+
+            String district,
+            String fullName,
+            String cpf,
+            Integer clientId
+            ) {
         this(
+            
                 id,
                 state,
                 createdAt,
