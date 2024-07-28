@@ -33,7 +33,7 @@ public class OccurrencesImageJpaModel {
 
 
     @Column(name = "occurrence_id")
-    private int occurenceId;
+    private int occurrenceId;
 
     @Column(name = "hash", nullable = false)
     private String hash;
@@ -47,13 +47,13 @@ public class OccurrencesImageJpaModel {
 
 
     @ManyToOne
-    @JoinColumn(name = "occurence_id", insertable = false, updatable = false)
+    @JoinColumn(name = "occurrence_id", insertable = false, updatable = false)
     private OccurrencesJpaModel occurrence;
 
 
-    public OccurrencesImageJpaModel(int id, int occurenceId, String hash, String path, LocalDateTime createdAt) {
+    public OccurrencesImageJpaModel(int id, int occurrenceId, String hash, String path, LocalDateTime createdAt) {
         this.id = id;
-        this.occurenceId = occurenceId;
+        this.occurrenceId = occurrenceId;
         this.hash = hash;
         this.path = path;
         this.createdAt = createdAt;

@@ -11,7 +11,7 @@ public interface OccurrenceImagesService {
     public PaginationResponse<OccurrencesImage> findAll(int page, int pageSize);
     
     public OccurrencesImage update(int id, String hash, String path);
-    public OccurrencesImage create(String hash,  String path, int occurenceId);
+    public OccurrencesImage create(String hash,  String path, int occurrenceId);
 
     public void delete(int id);
 }
