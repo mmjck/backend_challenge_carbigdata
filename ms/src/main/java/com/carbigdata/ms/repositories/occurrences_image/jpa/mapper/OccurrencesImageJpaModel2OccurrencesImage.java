@@ -12,7 +12,7 @@ public class OccurrencesImageJpaModel2OccurrencesImage implements Function<Occur
 
     @Override
     public OccurrencesImage apply(OccurrencesImageJpaModel model) {
-        return new OccurrencesImage(model.getId(), model.getOccurenceId(), model.getHash(), model.getPath(),
+        return new OccurrencesImage(model.getId(), model.getOccurrenceId(), model.getHash(), model.getPath(),
                 model.getCreatedAt());
     }
 }
