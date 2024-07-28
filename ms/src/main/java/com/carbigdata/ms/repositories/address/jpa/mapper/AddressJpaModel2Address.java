@@ -14,7 +14,7 @@ public class AddressJpaModel2Address implements Function<AddressJpaModel, Addres
 
     @Override
     public Address apply(AddressJpaModel client) {
-        return new Address(client.getId(), client.getState(), client.getCity(), client.getDistrict(), client.getZipCode(), client.getCreatedAt());
+        return new Address(client.getId(), client.getState(), client.getCity(), client.getZipCode(), client.getDistrict(), client.getCreatedAt());
         
     }
 }
