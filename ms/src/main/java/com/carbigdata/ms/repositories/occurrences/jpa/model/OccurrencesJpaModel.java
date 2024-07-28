@@ -41,16 +41,16 @@ import jakarta.persistence.ConstructorResult;
                 classes = {
                                 @ConstructorResult(targetClass = OccurrencesListDTO.class, columns = {
                                                 @ColumnResult(name = "id", type = String.class),
-                                                @ColumnResult(name = "state", type = String.class),
-                                                @ColumnResult(name = "createdAt", type = String.class),
                                                 @ColumnResult(name = "status", type = String.class),
-                                                @ColumnResult(name = "cpf", type = String.class),
-                                                @ColumnResult(name = "district", type = String.class),
-                                                @ColumnResult(name = "city", type = String.class),
-                                                @ColumnResult(name = "fullName", type = String.class),
-                                                @ColumnResult(name = "zipCode", type = String.class),
-                                                @ColumnResult(name = "clientId", type = Integer.class),
+                                                @ColumnResult(name = "createdAt", type = String.class),
                                                 @ColumnResult(name = "images", type = String.class),
+                                                @ColumnResult(name = "state", type = String.class),
+                                                @ColumnResult(name = "city", type = String.class),
+                                                @ColumnResult(name = "zipCode", type = String.class),
+                                                @ColumnResult(name = "district", type = String.class),
+                                                @ColumnResult(name = "fullName", type = String.class),
+                                                @ColumnResult(name = "cpf", type = String.class),
+                                                @ColumnResult(name = "clientId", type = Integer.class),
                                 }) })
 @NamedNativeQuery(query = "select " +
                 "o.id as id, " +
