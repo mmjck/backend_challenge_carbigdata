@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.carbigdata.ms.controller.occurrences_images.dto.CreateOccurenceImagesRequestDTO;
+import com.carbigdata.ms.controller.occurrences_images.dto.CreateOccurrenceImagesRequestDTO;
 import com.carbigdata.ms.controller.occurrences_images.dto.UpdateOccurrenceImagesRequestDTO;
 import com.carbigdata.ms.domain.occurrences_image.entities.OccurrencesImage;
 import com.carbigdata.ms.domain.pagination.PaginationResponse;
@@ -44,7 +44,7 @@ public class OccurrenceImagesController {
 
     @PostMapping
     public ResponseEntity<?> create(
-            @RequestPart("body") CreateOccurenceImagesRequestDTO dto,
+            @RequestPart("body") CreateOccurrenceImagesRequestDTO dto,
             @RequestParam("files") MultipartFile[] files) {
 
 
