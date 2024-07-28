@@ -33,7 +33,10 @@ import io.micrometer.common.lang.Nullable;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -42,7 +45,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
-@RequestMapping("/api/v1/occurence")
+@RequestMapping("/api/v1/occurrence")
 public class OccurrenceController {
 
     private final OccurrenceService occurrenceService;
@@ -78,6 +81,7 @@ public class OccurrenceController {
     }
 
     @PostMapping
+    @Transactional
     public ResponseEntity<?> create(
             @RequestPart("body") CreateOccurrenceRequestDTO dto,
             @RequestParam("files") MultipartFile[] files) {
@@ -93,17 +97,21 @@ public class OccurrenceController {
         }
 
         // save address
-        var address = this.addressService.create(dto.state(), dto.city(), dto.city(), dto.district());
+        var address = this.addressService.create(dto.state(), dto.city(), dto.zipCode(), dto.district());
 
         // create occurrence
         var occurrence = this.occurrenceService.create(address.getId(), client.getId());
 
         // save image on database
-        for (UploadImageResponseDTO response : responses) {
-            this.occurrenceImagesService.create(response.hash(), response.path(), occurrence.getId());
+        for (UploadImageResponseDTO data : responses) {
+            this.occurrenceImagesService.create(
+                data.hash(),
+                data.path(),
+                occurrence.getId()
+            );
         }
 
-        return ResponseEntity.ok().build();
+        return ResponseEntity.status(HttpStatus.CREATED).body(occurrence);
     }
 
     @PutMapping("/{id}")
