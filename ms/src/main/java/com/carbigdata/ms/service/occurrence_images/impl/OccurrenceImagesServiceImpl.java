@@ -4,7 +4,7 @@ package com.carbigdata.ms.service.occurrence_images.impl;
 import org.springframework.stereotype.Service;
 
 import com.carbigdata.ms.domain.occurrences_image.entities.OccurrencesImage;
-
+import com.carbigdata.ms.domain.occurrences_image.exceptions.OccurrencesImagesNotFoundException;
 import com.carbigdata.ms.domain.occurrences_image.gateway.OccurrencesImageGateway;
 import com.carbigdata.ms.domain.pagination.PaginationResponse;
 import com.carbigdata.ms.service.occurrence_images.OccurrenceImagesService;
@@ -24,17 +24,23 @@ public class OccurrenceImagesServiceImpl implements OccurrenceImagesService {
 
     @Override
     public OccurrencesImage get(int id) {
-        return this.gateway.findById(id);
+        OccurrencesImage register =  this.gateway.findById(id);
+
+        if(register == null){
+            throw new OccurrencesImagesNotFoundException();
+        }
+
+        return register;
     }
 
     @Override
-    public OccurrencesImage create(String hash,  String path, int occurenceId) {
+    public OccurrencesImage create(String hash,  String path, int occurrenceId) {
 
         var image = OccurrencesImage
             .builder()
             .hash(hash)
             .path(path)
-            .occurrenceId(occurenceId)
+            .occurrenceId(occurrenceId)
             .build();
             
             
@@ -59,6 +65,7 @@ public class OccurrenceImagesServiceImpl implements OccurrenceImagesService {
             register.setHash(hash);
         }
 
+        // TODO: added update of occurrence_id
         return this.gateway.update(register);
 
     }
