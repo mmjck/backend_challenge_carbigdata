@@ -3,21 +3,22 @@ version: "3.8"
 services:
   minio:
     image: quay.io/minio/minio
-    container_name: minio
+    container_name: minio-container
     networks:
       - localnetwork
     ports:
       - "9000:9000"
       - "9001:9001"
+    expose:
+      - "9000"
     environment:
-      MINIO_ROOT_USER: ROOTNAME
-      MINIO_ROOT_PASSWORD: CHANGEME123
+      MINIO_ROOT_USER: rootname
+      MINIO_ROOT_PASSWORD: password
       MINIO_DEFAULT_BUCKETS: occurrences-images
 
     volumes:
-      - ~/minio/data:/data
+      - 'minio_data:/data'
     command: server /data --console-address ":9001"
-
   postgres:
     container_name: postgresDB
     image: postgres
@@ -35,7 +36,7 @@ services:
     depends_on:
       - minio
       - postgres
-    image: service-image
+    image: service-image:latest
     networks:
       - localnetwork
     build: ../ms
@@ -45,3 +46,7 @@ services:
 networks:
   localnetwork:
     driver: bridge
+
+volumes:
+  minio_data:
+    driver: local
