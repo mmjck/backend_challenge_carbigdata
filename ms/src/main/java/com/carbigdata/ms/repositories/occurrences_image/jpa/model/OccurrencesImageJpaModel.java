@@ -35,10 +35,10 @@ public class OccurrencesImageJpaModel {
     @Column(name = "occurrence_id")
     private int occurrenceId;
 
-    @Column(name = "hash", nullable = false)
+    @Column(name = "hash", nullable = false, columnDefinition = "text")
     private String hash;
 
-    @Column(name = "path", nullable = false)
+    @Column(name = "path", nullable = false, columnDefinition = "text")
     private String path;
 
     @Column(name = "created_at")
