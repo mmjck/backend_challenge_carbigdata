@@ -32,7 +32,23 @@ docker-compose build -d
 ```
 
 Application will be running  `http://localhost:8080/` ✅   
+
+
+
+See [file](https://github.com/mmjck/backend_challenge_carbigdata/blob/main/case.md)
+to example of how to use api
  
+:warning:
+
+- It is necessary create a bucket first to upload images
+- Access http://localhost:9001/login with and input this credentiais
+	- username: username
+	- password: password
+
+Create bucket with this name
+`occurrences-images`
+
+
 
 # Endpoints 
 
