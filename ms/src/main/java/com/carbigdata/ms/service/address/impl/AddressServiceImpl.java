@@ -65,15 +65,15 @@ public class AddressServiceImpl implements AddressService {
             address.setState(state);
         }
 
-        if (city != null && city.equals(address.getCity())) {
+        if (city != null && !city.equals(address.getCity())) {
             address.setCity(city);
         }
 
-        if (zipCode != null && zipCode.equals(address.getZipCode())) {
+        if (zipCode != null && !zipCode.equals(address.getZipCode())) {
             address.setZipCode(zipCode);
         }
 
-        if (district != null && district.equals(address.getDistrict())) {
+        if (district != null && !district.equals(address.getDistrict())) {
             address.setDistrict(district);
         }
 
