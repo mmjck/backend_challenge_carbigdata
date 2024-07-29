@@ -6,8 +6,6 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.carbigdata.ms.controller.occurrences_images.dto.CreateOccurrenceImagesRequestDTO;
-import com.carbigdata.ms.controller.occurrences_images.dto.UpdateOccurrenceImagesRequestDTO;
 import com.carbigdata.ms.domain.occurrences_image.entities.OccurrencesImage;
 import com.carbigdata.ms.domain.pagination.PaginationResponse;
 import com.carbigdata.ms.repositories.occurrences_image.OccurrencesImageJpaGateway;
@@ -21,7 +19,6 @@ import java.util.ArrayList;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,32 +41,53 @@ public class OccurrenceImagesController {
 
     @PostMapping
     public ResponseEntity<?> create(
-            @RequestPart("body") CreateOccurrenceImagesRequestDTO dto,
+            @RequestPart("occurrence_id") int occurrenceId,
             @RequestParam("files") MultipartFile[] files) {
 
+        ArrayList<UploadImageResponseDTO> responses = new ArrayList<UploadImageResponseDTO>();
 
-                ArrayList<UploadImageResponseDTO> responses = new ArrayList<UploadImageResponseDTO>();
-
-        for (MultipartFile file : files) {
+        for (MultipartFile f : files) {
             UploadImageResponseDTO image;
-            image = this.uploadImageService.upload(file);
+            image = this.uploadImageService.upload(f);
             responses.add(image);
         }
 
-
-        for (UploadImageResponseDTO data: responses) {
-            this.service.create(data.hash(), data.path(), dto.occurenceId());
+        for (UploadImageResponseDTO data : responses) {
+            this.service.create(
+                    data.hash(),
+                    data.path(),
+                    occurrenceId);
         }
 
         return ResponseEntity.ok().build();
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody UpdateOccurrenceImagesRequestDTO dto) {
-        this.service.update(id, dto.hash(), dto.path());
+    public ResponseEntity<?> update(
+            @PathVariable("id") int id,
+            @RequestParam("files") MultipartFile[] files) {
+        if (files != null) {
+            ArrayList<UploadImageResponseDTO> responses = new ArrayList<UploadImageResponseDTO>();
+
+            for (MultipartFile f : files) {
+                UploadImageResponseDTO image;
+                image = this.uploadImageService.upload(f);
+                responses.add(image);
+            }
+
+            for (UploadImageResponseDTO data : responses) {
+                this.service.update(
+                        id,
+                        data.hash(),
+                        data.path()
+
+                );
+            }
+
+        }
+
         return ResponseEntity.ok().build();
     }
-
 
     @GetMapping("/")
     public ResponseEntity<?> getAll(
