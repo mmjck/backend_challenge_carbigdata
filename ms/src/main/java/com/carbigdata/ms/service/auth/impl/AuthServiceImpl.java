@@ -28,8 +28,6 @@ public class AuthServiceImpl implements AuthService{
         this.tokenService = tokenService;
     }
 
-    
-
     @Override
     public String register(String name, String cpf, String password, LocalDateTime birthDate) {
         Client findedUser = this.gateway.findByCpf(cpf);

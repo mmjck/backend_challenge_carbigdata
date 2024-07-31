@@ -4,7 +4,9 @@ import org.jetbrains.annotations.NotNull;
 
 public record LoginClientRequestDTO(
     @NotNull String cpf,
-    @NotNull String password
+    
+    @NotNull 
+    String password
 ) {
     
 }
