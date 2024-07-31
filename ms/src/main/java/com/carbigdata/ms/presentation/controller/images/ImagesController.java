@@ -38,7 +38,7 @@ public class ImagesController {
     }
 
     @PostMapping
-    public ResponseEntity<?> create(
+    public ResponseEntity<Void> create(
             @RequestPart("occurrence_id") int occurrenceId,
             @RequestParam("files") MultipartFile[] files) {
 
@@ -88,7 +88,7 @@ public class ImagesController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<?> getAll(
+    public ResponseEntity<PaginationResponse<Images>> getAll(
         @RequestParam(name = "page", defaultValue = "0") Integer page,
         @RequestParam(name = "pageSize", defaultValue = "10") Integer pageSize
     ) {
@@ -97,7 +97,7 @@ public class ImagesController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<?> getById(@PathVariable("id") int id) {
+    public ResponseEntity<ImagesResponseDTO> getById(@PathVariable("id") int id) {
         Images register = this.occurrenceImagesService.get(id);
         return ResponseEntity.ok().body(new ImagesResponseDTO(register.getHash(), register.getPath(), register.getOccurrenceId(), register.getId()));
     }
