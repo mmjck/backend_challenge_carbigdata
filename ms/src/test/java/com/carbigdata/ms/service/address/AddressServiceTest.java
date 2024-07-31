@@ -13,7 +13,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import com.carbigdata.ms.domain.address.exceptions.AddressNotFoundException;
+import com.carbigdata.ms.core.exception.address.AddressNotFoundException;
 import com.carbigdata.ms.repositories.address.AddressJpaGateway;
 import com.carbigdata.ms.repositories.address.jpa.AddressJpaRepository;
 import com.carbigdata.ms.repositories.address.jpa.model.AddressJpaModel;
@@ -37,7 +37,7 @@ public class AddressServiceTest {
         MockitoAnnotations.openMocks(this);
 
         AddressJpaGateway gateway = new AddressJpaGateway(this.repository);
-        this.service = AddressServiceImpl.build(gateway);
+        // this.service = AddressServiceImpl.build(gateway);
     }
 
     @Test

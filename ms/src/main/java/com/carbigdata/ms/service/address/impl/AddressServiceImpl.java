@@ -2,9 +2,9 @@ package com.carbigdata.ms.service.address.impl;
 
 import org.springframework.stereotype.Service;
 
-import com.carbigdata.ms.domain.address.entities.Address;
-import com.carbigdata.ms.domain.address.exceptions.AddressNotFoundException;
-import com.carbigdata.ms.domain.address.gateway.AddressGateway;
+import com.carbigdata.ms.core.domain.address.Address;
+import com.carbigdata.ms.core.domain.address.gateway.AddressGateway;
+import com.carbigdata.ms.core.exception.address.AddressNotFoundException;
 import com.carbigdata.ms.service.address.AddressService;
 
 @Service
@@ -12,13 +12,10 @@ public class AddressServiceImpl implements AddressService {
 
     private final AddressGateway gateway;
 
-    private AddressServiceImpl(AddressGateway gateway) {
+    public AddressServiceImpl(AddressGateway gateway) {
         this.gateway = gateway;
     }
 
-    public static AddressServiceImpl build(AddressGateway gateway) {
-        return new AddressServiceImpl(gateway);
-    }
 
     @Override
     public Address get(int id) {

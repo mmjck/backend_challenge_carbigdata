@@ -7,7 +7,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.carbigdata.ms.domain.client.exceptions.ClientNotFoundException;
+import com.carbigdata.ms.core.exception.client.ClientNotFoundException;
 import com.carbigdata.ms.repositories.client.ClientJpaGateway;
 import com.carbigdata.ms.repositories.client.jpa.ClientJpaRepository;
 import com.carbigdata.ms.repositories.client.jpa.model.ClientJpaModel;
@@ -40,7 +40,6 @@ public class ClientServiceTest {
 
         MockitoAnnotations.openMocks(this);
         ClientJpaGateway gateway = new ClientJpaGateway(this.repository);
-        this.service = ClientServiceImpl.build(gateway, passwordEncoder);
     }
 
     @Test

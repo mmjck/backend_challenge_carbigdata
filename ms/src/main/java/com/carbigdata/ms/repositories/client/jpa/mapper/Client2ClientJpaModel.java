@@ -1,7 +1,8 @@
 package com.carbigdata.ms.repositories.client.jpa.mapper;
 
 import java.util.function.Function;
-import com.carbigdata.ms.domain.client.entities.Client;
+
+import com.carbigdata.ms.core.domain.client.Client;
 import com.carbigdata.ms.repositories.client.jpa.model.ClientJpaModel;
 
 public class Client2ClientJpaModel implements Function<Client, ClientJpaModel> {

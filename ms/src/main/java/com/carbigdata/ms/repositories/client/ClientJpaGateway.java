@@ -4,8 +4,8 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 
-import com.carbigdata.ms.domain.client.entities.Client;
-import com.carbigdata.ms.domain.client.gateway.ClientGateway;
+import com.carbigdata.ms.core.domain.client.Client;
+import com.carbigdata.ms.core.domain.client.gateway.ClientGateway;
 import com.carbigdata.ms.repositories.client.jpa.ClientJpaRepository;
 import com.carbigdata.ms.repositories.client.jpa.mapper.Client2ClientJpaModel;
 import com.carbigdata.ms.repositories.client.jpa.mapper.ClientJpaModel2Client;

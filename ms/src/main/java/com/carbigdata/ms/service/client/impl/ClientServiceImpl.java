@@ -1,11 +1,10 @@
 package com.carbigdata.ms.service.client.impl;
 
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.carbigdata.ms.domain.client.entities.Client;
-import com.carbigdata.ms.domain.client.exceptions.ClientNotFoundException;
-import com.carbigdata.ms.domain.client.gateway.ClientGateway;
+import com.carbigdata.ms.core.domain.client.Client;
+import com.carbigdata.ms.core.domain.client.gateway.ClientGateway;
+import com.carbigdata.ms.core.exception.client.ClientNotFoundException;
 import com.carbigdata.ms.service.client.ClientService;
 
 import java.time.LocalDateTime;
@@ -15,20 +14,8 @@ public class ClientServiceImpl implements ClientService {
 
     private final ClientGateway gateway;
 
-    @SuppressWarnings("unused")
-    private final PasswordEncoder passwordEncoder;
-
-    private ClientServiceImpl(ClientGateway gateway, PasswordEncoder passwordEncoder) {
+    public ClientServiceImpl(ClientGateway gateway) {
         this.gateway = gateway;
-        this.passwordEncoder = passwordEncoder;
-    }
-
-    public static ClientServiceImpl build(ClientGateway gateway, PasswordEncoder passwordEncoder) {
-        return new ClientServiceImpl(gateway, passwordEncoder);
-    }
-
-    public static ClientServiceImpl with(ClientGateway gateway) {
-        return new ClientServiceImpl(gateway, null);
     }
 
     @Override

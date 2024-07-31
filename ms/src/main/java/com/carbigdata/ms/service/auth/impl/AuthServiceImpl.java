@@ -4,29 +4,31 @@ package com.carbigdata.ms.service.auth.impl;
 import java.time.LocalDateTime;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-import com.carbigdata.ms.domain.client.entities.Client;
-import com.carbigdata.ms.domain.client.exceptions.ClientAlreadyExistsException;
-import com.carbigdata.ms.domain.client.exceptions.ClientNotFoundException;
-import com.carbigdata.ms.domain.client.exceptions.PasswordOrCpfNotMatch;
-import com.carbigdata.ms.domain.client.gateway.ClientGateway;
-import com.carbigdata.ms.infra.secutiry.TokenService;
+import com.carbigdata.ms.core.domain.client.Client;
+import com.carbigdata.ms.core.domain.client.gateway.ClientGateway;
+import com.carbigdata.ms.core.exception.client.ClientAlreadyExistsException;
+import com.carbigdata.ms.core.exception.client.ClientNotFoundException;
+import com.carbigdata.ms.core.exception.client.PasswordOrCpfNotMatch;
+import com.carbigdata.ms.infra.security.TokenService;
 import com.carbigdata.ms.service.auth.AuthService;
 
+
+@Service
 public class AuthServiceImpl implements AuthService{
     private final ClientGateway gateway;
     private final PasswordEncoder passwordEncoder;
     private final TokenService tokenService;
 
-    private AuthServiceImpl(ClientGateway gateway, PasswordEncoder passwordEncoder, TokenService tokenService) {
+    public AuthServiceImpl(ClientGateway gateway, PasswordEncoder passwordEncoder, TokenService tokenService) {
         this.gateway = gateway;
         this.passwordEncoder = passwordEncoder;
         this.tokenService = tokenService;
     }
 
-    public static AuthServiceImpl build(ClientGateway gateway, PasswordEncoder passwordEncoder, TokenService tokenService){
-        return new AuthServiceImpl(gateway, passwordEncoder, tokenService);
-    }
+    
 
     @Override
     public String register(String name, String cpf, String password, LocalDateTime birthDate) {
