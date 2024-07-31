@@ -1,7 +1,8 @@
 package com.carbigdata.ms.repositories.address.jpa.mapper;
 
 import java.util.function.Function;
-import com.carbigdata.ms.domain.address.entities.Address;
+
+import com.carbigdata.ms.core.domain.address.Address;
 import com.carbigdata.ms.repositories.address.jpa.model.AddressJpaModel;
 
 public class Address2AddressJpaModel implements Function<Address, AddressJpaModel>  {

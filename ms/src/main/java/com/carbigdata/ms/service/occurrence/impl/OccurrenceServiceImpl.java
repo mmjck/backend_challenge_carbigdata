@@ -3,11 +3,12 @@ package com.carbigdata.ms.service.occurrence.impl;
 
 
 import org.springframework.stereotype.Service;
-import com.carbigdata.ms.domain.occurrences.entities.Occurrences;
-import com.carbigdata.ms.domain.occurrences.entities.OccurrencesStatus;
-import com.carbigdata.ms.domain.occurrences.exceptions.OccurrenceNotBeModifiedException;
-import com.carbigdata.ms.domain.occurrences.exceptions.OccurrenceNotFoundException;
-import com.carbigdata.ms.domain.occurrences.gateway.OccurrencesGateway;
+
+import com.carbigdata.ms.core.domain.occurrences.Occurrences;
+import com.carbigdata.ms.core.domain.occurrences.OccurrencesStatus;
+import com.carbigdata.ms.core.domain.occurrences.gateway.OccurrencesGateway;
+import com.carbigdata.ms.core.exception.occurrences.OccurrenceNotBeModifiedException;
+import com.carbigdata.ms.core.exception.occurrences.OccurrenceNotFoundException;
 import com.carbigdata.ms.service.occurrence.OccurrenceService;
 
 import java.util.List;
@@ -15,13 +16,10 @@ import java.util.List;
 @Service
 public class OccurrenceServiceImpl implements OccurrenceService {
     
-    private final OccurrencesGateway gateway;
-        private OccurrenceServiceImpl(OccurrencesGateway gateway) {
+    public final OccurrencesGateway gateway;
+    
+    private OccurrenceServiceImpl(OccurrencesGateway gateway) {
         this.gateway = gateway;
-    }
-
-    public static OccurrenceServiceImpl build(OccurrencesGateway gateway){
-        return new OccurrenceServiceImpl(gateway);
     }
 
     @Override

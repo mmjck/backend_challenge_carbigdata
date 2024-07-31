@@ -2,7 +2,7 @@ package com.carbigdata.ms.repositories.address.jpa.mapper;
 
 
 
-import com.carbigdata.ms.domain.address.entities.Address;
+import com.carbigdata.ms.core.domain.address.Address;
 import com.carbigdata.ms.repositories.address.jpa.model.AddressJpaModel;
 
 import java.util.function.Function;

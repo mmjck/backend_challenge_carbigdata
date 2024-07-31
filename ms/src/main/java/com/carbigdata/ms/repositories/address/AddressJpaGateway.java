@@ -4,15 +4,16 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Component;
 
-import com.carbigdata.ms.domain.address.entities.Address;
-import com.carbigdata.ms.domain.address.exceptions.AddressNotFoundException;
-import com.carbigdata.ms.domain.address.gateway.AddressGateway;
+import com.carbigdata.ms.core.domain.address.Address;
+import com.carbigdata.ms.core.domain.address.gateway.AddressGateway;
+import com.carbigdata.ms.core.exception.address.AddressNotFoundException;
 import com.carbigdata.ms.repositories.address.jpa.AddressJpaRepository;
 import com.carbigdata.ms.repositories.address.jpa.mapper.Address2AddressJpaModel;
 import com.carbigdata.ms.repositories.address.jpa.mapper.AddressJpaModel2Address;
 import com.carbigdata.ms.repositories.address.jpa.model.AddressJpaModel;
 
 @Component
+// Use annotation @Repository
 public class AddressJpaGateway implements AddressGateway {
 
     private final AddressJpaRepository repository;

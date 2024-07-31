@@ -2,8 +2,9 @@ package com.carbigdata.ms.service.occurrence;
 
 
 import java.util.List;
-import com.carbigdata.ms.domain.occurrences.entities.Occurrences;
-import com.carbigdata.ms.domain.occurrences.entities.OccurrencesStatus;
+
+import com.carbigdata.ms.core.domain.occurrences.Occurrences;
+import com.carbigdata.ms.core.domain.occurrences.OccurrencesStatus;
 
 public interface OccurrenceService {
     public Occurrences get(Integer id);

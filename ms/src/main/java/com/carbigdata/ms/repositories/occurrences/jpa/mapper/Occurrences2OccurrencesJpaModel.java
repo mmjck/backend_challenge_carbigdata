@@ -2,7 +2,7 @@ package com.carbigdata.ms.repositories.occurrences.jpa.mapper;
 
 import java.util.function.Function;
 
-import com.carbigdata.ms.domain.occurrences.entities.Occurrences;
+import com.carbigdata.ms.core.domain.occurrences.Occurrences;
 import com.carbigdata.ms.repositories.occurrences.jpa.model.OccurrencesJpaModel;
 
 public class Occurrences2OccurrencesJpaModel implements Function<Occurrences, OccurrencesJpaModel> {

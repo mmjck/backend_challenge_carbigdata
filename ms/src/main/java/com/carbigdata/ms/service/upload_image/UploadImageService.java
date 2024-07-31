@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.carbigdata.ms.domain.occurrences_image.exceptions.OccurrencesImagesUploadException;
+import com.carbigdata.ms.core.exception.images.ImagesUploadException;
 import com.carbigdata.ms.service.upload_image.dto.UploadImageResponseDTO;
 
 import io.minio.GetPresignedObjectUrlArgs;
@@ -48,7 +48,8 @@ public class UploadImageService {
             return new UploadImageResponseDTO(response.etag(), url);
         } catch (Exception e) {
             System.out.println(e);
-            throw new OccurrencesImagesUploadException();
+            System.out.println(e.getStackTrace());
+            throw new ImagesUploadException();
         }
     }
 }

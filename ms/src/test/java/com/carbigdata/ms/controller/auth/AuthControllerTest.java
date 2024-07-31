@@ -13,8 +13,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
-import com.carbigdata.ms.controller.auth.dto.LoginClientRequestDTO;
-import com.carbigdata.ms.controller.auth.dto.RegisterClientRequestDTO;
+
+import com.carbigdata.ms.presentation.controller.auth.dto.LoginClientRequestDTO;
+import com.carbigdata.ms.presentation.controller.auth.dto.RegisterClientRequestDTO;
 import com.carbigdata.ms.utils.TestUtils;
 
 import java.time.LocalDateTime;

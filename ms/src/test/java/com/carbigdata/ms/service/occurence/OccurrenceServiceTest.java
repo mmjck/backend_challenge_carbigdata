@@ -18,7 +18,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import com.carbigdata.ms.domain.occurrences.entities.OccurrencesStatus;
+import com.carbigdata.ms.core.domain.occurrences.OccurrencesStatus;
 import com.carbigdata.ms.repositories.occurrences.OccurrencesJpaGateway;
 import com.carbigdata.ms.repositories.occurrences.jpa.OccurrencesJpaRepository;
 import com.carbigdata.ms.repositories.occurrences.jpa.model.OccurrencesJpaModel;
@@ -27,20 +27,23 @@ import com.carbigdata.ms.service.occurrence.impl.OccurrenceServiceImpl;
 public class OccurrenceServiceTest {
 
     @Mock
-    OccurrencesJpaRepository repository;
+    private OccurrencesJpaRepository repository;
 
-    private OccurrenceService service;
+    @Mock
+    private OccurrenceService mocker;
+
+
+    @Mock
+    private OccurrencesJpaGateway gateway;
 
     @InjectMocks
-    OccurrenceServiceImpl impl;
+    private OccurrenceServiceImpl service;
 
     @BeforeEach
     void init() {
 
         MockitoAnnotations.openMocks(this);
 
-        OccurrencesJpaGateway gateway = new OccurrencesJpaGateway(this.repository);
-        this.service = OccurrenceServiceImpl.build(gateway);
     }
 
     @Test

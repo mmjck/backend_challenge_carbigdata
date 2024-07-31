@@ -13,31 +13,38 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import com.carbigdata.ms.domain.address.exceptions.AddressNotFoundException;
+import com.carbigdata.ms.core.domain.address.gateway.AddressGateway;
+import com.carbigdata.ms.core.exception.address.AddressNotFoundException;
 import com.carbigdata.ms.repositories.address.AddressJpaGateway;
 import com.carbigdata.ms.repositories.address.jpa.AddressJpaRepository;
 import com.carbigdata.ms.repositories.address.jpa.model.AddressJpaModel;
 import com.carbigdata.ms.service.address.impl.AddressServiceImpl;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.junit.jupiter.api.extension.ExtendWith;
 
+// @ExtendWith(MockitoExtension.class)
 public class AddressServiceTest {
     @Mock
-    AddressJpaRepository repository;
+    private AddressJpaRepository repository;
 
-    private AddressService service;
+    @Mock
+    private AddressService mocked;
+
+    @Mock
+    private AddressGateway gateway;
+
+    @Mock
+    private AddressJpaGateway addressJpaGateway;
 
     @InjectMocks
-    AddressServiceImpl impl;
+    private AddressServiceImpl service;
 
     @BeforeEach
     void init() {
-
         MockitoAnnotations.openMocks(this);
-
-        AddressJpaGateway gateway = new AddressJpaGateway(this.repository);
-        this.service = AddressServiceImpl.build(gateway);
     }
 
     @Test
@@ -67,7 +74,7 @@ public class AddressServiceTest {
         when(this.repository.save(any(AddressJpaModel.class))).thenReturn(model);
         this.repository.save(model);
 
-        when(this.repository.findById(1)).thenReturn(Optional.of(model));
+        when(this.repository.findById(anyInt())).thenReturn(Optional.of(model));
 
         var response = this.service.get(1);
         assertNotNull(response);
@@ -87,29 +94,5 @@ public class AddressServiceTest {
             this.service.update(100, state, city, zipCode, district);
         });
     }
-
-    // @Test(sk)
-    // void testUpdate() {
-    // String city = "city";
-    // String state = "state";
-    // String zipCode = "zipCode";
-    // String district = "district";
-
-    // var model = new AddressJpaModel(1, state, city, district, zipCode,
-    // LocalDateTime.now());
-
-    // when(this.repository.save(any(AddressJpaModel.class))).thenReturn(model);
-    // // this.repository.save(model);
-
-    // when(this.repository.findById(1)).thenReturn(Optional.of(model));
-
-    // // when(this.repository.save(any(AddressJpaModel.class))).thenReturn(model);
-
-    // var response = this.service.update(1, "new-state", city, zipCode, district);
-
-    // assertNotNull(response);
-    // assertThat(response.getState()).isEqualTo("new-state");
-
-    // }
 
 }

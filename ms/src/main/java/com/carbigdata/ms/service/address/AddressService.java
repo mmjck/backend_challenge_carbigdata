@@ -1,6 +1,6 @@
 package com.carbigdata.ms.service.address;
 
-import com.carbigdata.ms.domain.address.entities.Address;
+import com.carbigdata.ms.core.domain.address.Address;
 
 public interface AddressService {
     public Address get(int id);

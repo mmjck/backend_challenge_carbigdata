@@ -1,7 +1,8 @@
 package com.carbigdata.ms.service.client;
 
 import java.time.LocalDateTime;
-import com.carbigdata.ms.domain.client.entities.Client;
+
+import com.carbigdata.ms.core.domain.client.Client;
 
 public interface ClientService {
     public Client get(int id);

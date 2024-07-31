@@ -1,6 +1,6 @@
 package com.carbigdata.ms.repositories.occurrences.jpa.mapper;
 
-import com.carbigdata.ms.domain.occurrences.entities.Occurrences;
+import com.carbigdata.ms.core.domain.occurrences.Occurrences;
 import com.carbigdata.ms.repositories.occurrences.jpa.model.OccurrencesJpaModel;
 import java.util.function.Function;
 
