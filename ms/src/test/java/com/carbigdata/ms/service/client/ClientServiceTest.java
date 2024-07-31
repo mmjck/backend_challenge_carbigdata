@@ -25,25 +25,31 @@ import java.util.Optional;
 public class ClientServiceTest {
 
     @Mock
-    ClientJpaRepository repository;
+    private ClientJpaRepository repository;
+
+    @Mock
+    private ClientJpaGateway gateway;
+
+    @Mock
+    private ClientJpaGateway clientJpaGateway;
 
     @Mock
     PasswordEncoder passwordEncoder;
 
-    private ClientService service;
+    @Mock
+    private ClientService mocked;
 
     @InjectMocks
-    ClientServiceImpl impl;
+    private ClientServiceImpl service;
 
     @BeforeEach
     void init() {
-
         MockitoAnnotations.openMocks(this);
-        ClientJpaGateway gateway = new ClientJpaGateway(this.repository);
     }
 
     @Test
-    void testDelete() { }
+    void testDelete() {
+    }
 
     @Test
     void testFindByCpf() {
@@ -53,6 +59,8 @@ public class ClientServiceTest {
         String cpf = "cpf";
         LocalDateTime birthDate = LocalDateTime.of(2024, 07, 01, 01, 01, 01);
         LocalDateTime createdAt = LocalDateTime.of(2024, 07, 01, 01, 01, 01);
+
+
         ClientJpaModel model = new ClientJpaModel(id, fullName, cpf, password, birthDate, createdAt);
 
         this.repository.save(model);
@@ -72,7 +80,6 @@ public class ClientServiceTest {
             this.service.findByCpf(cpf);
         });
     }
-
 
     @Test
     void testGet() {
@@ -98,7 +105,6 @@ public class ClientServiceTest {
             this.service.get(anyInt());
         });
     }
-
 
     @Test
     void testUpdate() {

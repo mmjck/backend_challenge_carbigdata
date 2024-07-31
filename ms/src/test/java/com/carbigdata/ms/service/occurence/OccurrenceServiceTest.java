@@ -27,12 +27,17 @@ import com.carbigdata.ms.service.occurrence.impl.OccurrenceServiceImpl;
 public class OccurrenceServiceTest {
 
     @Mock
-    OccurrencesJpaRepository repository;
+    private OccurrencesJpaRepository repository;
 
-    private OccurrenceService service;
+    @Mock
+    private OccurrenceService mocker;
+
+
+    @Mock
+    private OccurrencesJpaGateway gateway;
 
     @InjectMocks
-    OccurrenceServiceImpl impl;
+    private OccurrenceServiceImpl service;
 
     @BeforeEach
     void init() {

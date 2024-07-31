@@ -19,7 +19,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
 import com.carbigdata.ms.core.domain.images.gateway.ImagesGateway;
+import com.carbigdata.ms.repositories.images.ImagesJpaGateway;
 import com.carbigdata.ms.repositories.images.jpa.ImagesJpaRepository;
+import com.carbigdata.ms.repositories.images.jpa.model.ImagesJpaModel;
 import com.carbigdata.ms.service.images.impl.ImagesServiceImpl;
 
 import java.time.LocalDateTime;
@@ -29,108 +31,110 @@ import java.util.List;
 
 public class ImagesServiceTest {
 
-    // @Mock
-    // ImagesJpaRepository repository;
+    @Mock
+    private ImagesJpaRepository repository;
 
-    // private OccurrenceImagesService service;
+    @Mock
+    private ImagesService mocked;
 
-    // @InjectMocks
-    // OccurrenceImagesServiceImpl impl;
+    @Mock
+    private ImagesJpaGateway gateway;
 
-    // @BeforeEach
-    // void init() {
+    @InjectMocks
+    private ImagesServiceImpl service;
 
-    //     MockitoAnnotations.openMocks(this);
+    @BeforeEach
+    void init() {
 
-    //     // ImagesGateway gateway = new ImagesJpaGateway(this.repository);
-    // }
+        MockitoAnnotations.openMocks(this);
+    }
 
-    // @Test
-    // void testCreate() {
-    //     String hash = "hash";
-    //     String path = "path";
-    //     int occurrenceId = 1;
-    //     int id = 1;
-    //     var model = new OccurrencesImageJpaModel(id, occurrenceId, hash, path, LocalDateTime.now());
-    //     when(this.repository.save(any(OccurrencesImageJpaModel.class))).thenReturn(model);
-
-
-
-    //     var response = this.service.create(hash, path, occurrenceId);
-    //     assertNotNull(response);
-    //     assertThat(response.getOccurrenceId()).isEqualTo(occurrenceId);
-
-    // }
-
-    // @Test
-    // void testDelete() { }
-
-    // @Test
-    // void testFindAll() {
-    //     String hash = "hash";
-    //     String path = "path";
-    //     int occurrenceId = 1;
-    //     int id = 1;
-    //     var model = new OccurrencesImageJpaModel(id, occurrenceId, hash, path, LocalDateTime.now());
+    @Test
+    void testCreate() {
+        String hash = "hash";
+        String path = "path";
+        int occurrenceId = 1;
+        int id = 1;
+        var model = new ImagesJpaModel(id, occurrenceId, hash, path, LocalDateTime.now());
+        when(this.repository.save(any(ImagesJpaModel.class))).thenReturn(model);
 
 
 
-    //     int page = 0;
-    //     int pageSize = 10;
+        var response = this.service.create(hash, path, occurrenceId);
+        assertNotNull(response);
+        assertThat(response.getOccurrenceId()).isEqualTo(occurrenceId);
+
+    }
+
+    @Test
+    void testDelete() { }
+
+    @Test
+    void testFindAll() {
+        String hash = "hash";
+        String path = "path";
+        int occurrenceId = 1;
+        int id = 1;
+        var model = new ImagesJpaModel(id, occurrenceId, hash, path, LocalDateTime.now());
+
+
+
+        int page = 0;
+        int pageSize = 10;
         
-    //     List<OccurrencesImageJpaModel> images = Arrays.asList(model);
-    //     Pageable pageable = PageRequest.of(page, pageSize);
+        List<ImagesJpaModel> images = Arrays.asList(model);
+        Pageable pageable = PageRequest.of(page, pageSize);
 
-    //     // Create a Page object
-    //     Page<OccurrencesImageJpaModel> p = new PageImpl<>(images, pageable, images.size());
+        // Create a Page object
+        Page<ImagesJpaModel> p = new PageImpl<>(images, pageable, images.size());
 
-    //     when(this.repository.findAll(pageable)).thenReturn(p);
+        when(this.repository.findAll(pageable)).thenReturn(p);
 
-    //     var response = this.service.findAll(page, pageSize);
-    //     assertNotNull(response);
-    //     assertThat(response.total()).isEqualTo(1);
-    //     assertThat(response.page()).isEqualTo(0);
-    //     assertThat(response.data().size()).isEqualTo(1);
-    // }
+        var response = this.service.findAll(page, pageSize);
+        assertNotNull(response);
+        assertThat(response.total()).isEqualTo(1);
+        assertThat(response.page()).isEqualTo(0);
+        assertThat(response.data().size()).isEqualTo(1);
+    }
 
-    // @Test
-    // void testGet() {
-    //     String hash = "hash";
-    //     String path = "path";
-    //     int occurrenceId = 1;
-    //     int id = 1;
-    //     var model = new OccurrencesImageJpaModel(id, occurrenceId, hash, path, LocalDateTime.now());
-
-
-    //     when(this.repository.findById(anyInt())).thenReturn(Optional.of(model));
+    @Test
+    void testGet() {
+        String hash = "hash";
+        String path = "path";
+        int occurrenceId = 1;
+        int id = 1;
+        var model = new ImagesJpaModel(id, occurrenceId, hash, path, LocalDateTime.now());
 
 
-    //     var response  = this.service.get(id);
-    //     assertNotNull(response);
-    //     assertThat(response.getOccurrenceId()).isEqualTo(occurrenceId);
-
-    // }
-
-    // @Test
-    // void testUpdate() {
-    //     String hash = "hash";
-    //     String path = "path";
-    //     int occurrenceId = 1;
-    //     int id = 1;
-    //     var model = new OccurrencesImageJpaModel(id, occurrenceId, hash, path, LocalDateTime.now());
+        when(this.repository.findById(anyInt())).thenReturn(Optional.of(model));
 
 
-    //     this.repository.save(model);
-    //     when(this.repository.findById(anyInt())).thenReturn(Optional.of(model));
+        var response  = this.service.get(id);
+        assertNotNull(response);
+        assertThat(response.getOccurrenceId()).isEqualTo(occurrenceId);
 
-    //     model.setPath("new-path");
-    //     when(this.repository.saveAndFlush(any(OccurrencesImageJpaModel.class))).thenReturn(model);
-    //     var response  = this.service.update(id, hash, "new-path");
+    }
+
+    @Test
+    void testUpdate() {
+        String hash = "hash";
+        String path = "path";
+        int occurrenceId = 1;
+        int id = 1;
+        var model = new ImagesJpaModel(id, occurrenceId, hash, path, LocalDateTime.now());
+
+
+        this.repository.save(model);
+        when(this.repository.findById(anyInt())).thenReturn(Optional.of(model));
+
+        model.setPath("new-path");
+        when(this.repository.saveAndFlush(any(ImagesJpaModel.class))).thenReturn(model);
+        var response  = this.service.update(id, hash, "new-path");
 
 
 
-    //     assertNotNull(response);
-    //     assertThat(response.getOccurrenceId()).isEqualTo(occurrenceId);
-    //     assertThat(response.getPath()).isEqualTo("new-path");
-    // }
+        assertNotNull(response);
+        assertThat(response.getOccurrenceId()).isEqualTo(occurrenceId);
+        assertThat(response.getPath()).isEqualTo("new-path");
+    }
 }
