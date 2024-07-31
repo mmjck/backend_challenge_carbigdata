@@ -31,9 +31,9 @@ public class AddressController {
     }
 
     @PostMapping
-    public ResponseEntity<Address> create(@RequestBody CreateAddressRequestDTO dto) {
+    public ResponseEntity<AddressResponseDTO> create(@RequestBody CreateAddressRequestDTO dto) {
         Address register = this.service.create(dto.state(), dto.city(), dto.zipCode(), dto.district());
-        return ResponseEntity.status(HttpStatus.CREATED).body(register);
+        return ResponseEntity.ok().body(new AddressResponseDTO(register.getId(), register.getZipCode(), register.getCity(), register.getState(), register.getDistrict()));
     }
 
     @PutMapping("/{id}")
